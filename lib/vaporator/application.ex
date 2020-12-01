@@ -6,9 +6,7 @@ defmodule Vaporator.Application do
   use Application
 
   def start(_type, _args) do
-    if should_start_wizard?() do
-      VintageNetWizard.run_wizard()
-    end
+    maybe_start_wizard()
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -45,7 +43,21 @@ defmodule Vaporator.Application do
     Application.get_env(:vaporator, :target)
   end
 
+  defp maybe_start_wizard() do
+    if should_start_wizard?() do
+      VintageNetWizard.run_wizard()
+    end
+  end
+
   defp should_start_wizard?() do
+    target_is_not_host?() and wifi_configured?()
+  end
+
+  defp target_is_not_host?() do
     target() != :host
+  end
+
+  defp wifi_configured?() do
+    VintageNet.get(["interface", "wlan0", "state"]) == :configured
   end
 end
