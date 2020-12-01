@@ -20,3 +20,5 @@ erl_crash.dump
 # dialyzer plt
 vaporator.plt
 vaporator.plt.hash
+
+/nerves-hub/

@@ -17,6 +17,7 @@ defmodule Vaporator.Application do
         # {Vaporator.Worker, arg},
       ] ++ children(target())
 
+    VintageNetWizard.run_wizard()
     Supervisor.start_link(children, opts)
   end
 
