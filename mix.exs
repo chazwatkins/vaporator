@@ -49,7 +49,6 @@ defmodule Vaporator.MixProject do
       # Dependencies for all targets
       {:nerves, "~> 1.7.0", runtime: false},
       {:nerves_hub_cli, "~> 0.10", runtime: false},
-      {:ssh_subsystem_fwup, "~> 0.5.1"},
       {:shoehorn, "~> 0.7.0"},
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.14"},
@@ -59,6 +58,7 @@ defmodule Vaporator.MixProject do
       {:nerves_pack, "~> 0.4.1", targets: @all_targets},
       {:nerves_hub_link, "~> 0.9.2", targets: @all_targets},
       {:nerves_time, "~> 0.4.2", targets: @all_targets},
+      {:nerves_ssh, "~> 0.2.1", targets: @all_targets},
       {:vintage_net_wizard, "~> 0.4", targets: @all_targets},
 
       # Dependencies for specific targets

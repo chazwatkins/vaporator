@@ -6,6 +6,10 @@ defmodule Vaporator.Application do
   use Application
 
   def start(_type, _args) do
+    if should_start_wizard?() do
+      VintageNetWizard.run_wizard()
+    end
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Vaporator.Supervisor]
@@ -17,7 +21,6 @@ defmodule Vaporator.Application do
         # {Vaporator.Worker, arg},
       ] ++ children(target())
 
-    VintageNetWizard.run_wizard()
     Supervisor.start_link(children, opts)
   end
 
@@ -40,5 +43,9 @@ defmodule Vaporator.Application do
 
   def target() do
     Application.get_env(:vaporator, :target)
+  end
+
+  defp should_start_wizard?() do
+    target() != :host
   end
 end
