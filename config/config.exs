@@ -9,7 +9,12 @@ import Config
 Application.start(:nerves_bootstrap)
 
 config :vaporator,
-  target: Mix.target()
+  target: Mix.target(),
+  supported_os_types: ~w(
+    windows_xp
+    windows_7
+    windows_10
+  )
 
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
@@ -17,11 +22,6 @@ config :vaporator,
 config :nerves, :firmware,
   rootfs_overlay: "rootfs_overlay",
   provisioning: :nerves_hub_link
-
-config :nerves_ssh,
-  authorized_keys: [
-    File.read!(Path.join(System.user_home!(), ".ssh/id_rsa.pub"))
-  ]
 
 # Set the SOURCE_DATE_EPOCH date for reproducible builds.
 # See https://reproducible-builds.org/docs/source-date-epoch/ for more information
@@ -33,6 +33,12 @@ config :nerves, source_date_epoch: "1604546527"
 # configuring ring_logger.
 
 config :logger, backends: [RingLogger]
+
+config :logger, RingLogger,
+  max_size: 1024,
+  color: [enabled: true]
+
+import_config "ecto.exs"
 
 if Mix.target() != :host do
   import_config "target.exs"

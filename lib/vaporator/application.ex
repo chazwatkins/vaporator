@@ -6,7 +6,9 @@ defmodule Vaporator.Application do
   use Application
 
   def start(_type, _args) do
-    maybe_start_wizard()
+    if target_is_not_host?() do
+      maybe_start_wizard()
+    end
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -17,6 +19,7 @@ defmodule Vaporator.Application do
         # Children for all targets
         # Starts a worker by calling: Vaporator.Worker.start_link(arg)
         # {Vaporator.Worker, arg},
+        Vaporator.Repo
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)
@@ -50,7 +53,7 @@ defmodule Vaporator.Application do
   end
 
   defp should_start_wizard?() do
-    target_is_not_host?() and wifi_configured?()
+    wifi_configured?()
   end
 
   defp target_is_not_host?() do

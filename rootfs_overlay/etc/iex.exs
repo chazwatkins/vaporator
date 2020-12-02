@@ -25,3 +25,7 @@ IEx.configure(
     :reset
   ] |> IO.ANSI.format |> IO.chardata_to_string
 )
+
+alias Vaporator.Repo
+alias Vaporator.FileSystems
+alias Vaporator.FileSystems.{Client, Cloud, Sync, File}
