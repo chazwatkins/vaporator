@@ -1,6 +1,4 @@
 defmodule Vaporator.FileSystems do
-  import Ecto.Query
-
   alias Vaporator.Repo
 
   alias Vaporator.FileSystems.File

@@ -2,7 +2,7 @@ defmodule Vaporator.FileSystems.File do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Vaporator.Config.Sync
+  alias Vaporator.Configs.Sync
 
   schema "files" do
     belongs_to(:sync, Sync)

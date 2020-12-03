@@ -1,6 +1,4 @@
 defmodule Vaporator.Configs do
-  import Ecto.Query
-
   alias Vaporator.Repo
 
   alias Vaporator.Configs.{Client, Cloud, Sync}

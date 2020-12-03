@@ -1,4 +1,4 @@
-defmodule Vaporator.Config.Client do
+defmodule Vaporator.Configs.Client do
   use Ecto.Schema
   import Ecto.Changeset
 

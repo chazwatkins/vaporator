@@ -1,8 +1,8 @@
-defmodule Vaporator.Config.Sync do
+defmodule Vaporator.Configs.Sync do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Vaporator.Config.{Client, Cloud}
+  alias Vaporator.Configs.{Client, Cloud}
   alias Vaporator.FileSystems.File
 
   schema "syncs" do

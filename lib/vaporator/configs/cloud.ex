@@ -1,4 +1,4 @@
-defmodule Vaporator.Config.Cloud do
+defmodule Vaporator.Configs.Cloud do
   use Ecto.Schema
   import Ecto.Changeset
 
